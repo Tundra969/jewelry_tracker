@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+
+        <link rel="stylesheet" href="vendors/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/styles/style.css">
+
+        <script type="text/javascript" src="vendors/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/scripts/app.js"></script>
+    </head>
+
+    <body>
+        <h1>Please add your comment</h1>
+        <form id="addComment">
+            <input type="text" id="nameAdd" name="nameAdd" placeholder="Enter Name">
+            <textarea type="text" id="commentAdd" name="commentAdd" placeholder="Enter Your Comment" rows="10" cols="60"></textarea>
+            <button id="submit" class="btn btn-info">Submit</button>
+        </form>
+        <div id="addMessage">
+            <h1>Previous Messages:</h1>
+            <div id="messages"></div>
+        </div>
+    </body>
+</html>
