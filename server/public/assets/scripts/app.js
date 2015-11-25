@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    $("#addComment").submit(addMessage);
+    $("#addDetails").submit(addProduct);
 
-    $("#addMessage").on('click', '.delete', deleteMessage);
+    $("#addProducts").on('click', '.delete', deleteProduct);
 
     getData();
 });
@@ -12,11 +12,12 @@ function getData(){
         url: "/data",
         success: function(data){
             updateDOM(data);
+            //console.log(data);
         }
     });
 }
 
-function addMessage(data){
+function addProduct(data){
     event.preventDefault();
     var values = {};
 
@@ -24,6 +25,7 @@ function addMessage(data){
         values[field.name] = field.value;
     });
 
+    console.log(values);
     $.ajax({
         type: "POST",
         url: "/data",
@@ -34,7 +36,7 @@ function addMessage(data){
     });
 }
 
-function deleteMessage(){
+function deleteProduct(){
     var deletedId = {"id" : $(this).data("id")};
 
     console.log("Meaningful Log: ", deletedId);
@@ -43,23 +45,28 @@ function deleteMessage(){
         type: "DELETE",
         url: "/data",
         data: deletedId,
-        success: function(){
-            getData();
+        success: function(data){
+            getData(data);
         }
     })
 }
 
 function updateDOM(data){
-    $("#messages").empty();
+    $("#products").empty();
 
     for(var i = 0; i < data.length; i++){
-        var el = "<div class='well col-md-4'>" +
-            "<p>" + data[i].name + "</p>" +
-            "<p>" + data[i].comment + "</p>" +
+        var el = "<div id='" + data[i].id + "' class='well col-md-3'>" +
+            "<p>ID #: " + data[i].id + "</p>" +
+            "<p>Type: " + data[i].type + "</p>" +
+            "<p>Style: " + data[i].style + "</p>" +
+            "<p>Color: " + data[i].color + "</p>" +
+            "<p>Cost: " + data[i].cost + "</p>" +
+            "<p>Additional Details: " + data[i].details + "</p>" +
             "<button class='delete btn btn-danger' data-id='" +
             data[i].id + "'>Delete</button>" +
             "</div>";
+        //console.log(data[i]);
 
-        $("#messages").append(el);
+        $("#products").append(el);
     }
 }

@@ -13,15 +13,23 @@
     </head>
 
     <body>
-        <h1>Please add your comment</h1>
-        <form id="addComment">
-            <input type="text" id="nameAdd" name="nameAdd" placeholder="Enter Name">
-            <textarea type="text" id="commentAdd" name="commentAdd" placeholder="Enter Your Comment" rows="10" cols="60"></textarea>
-            <button id="submit" class="btn btn-info">Submit</button>
-        </form>
-        <div id="addMessage">
-            <h1>Previous Messages:</h1>
-            <div id="messages"></div>
+        <h2 align="center">Jewelry Collection Tracker</h2>
+        <div id="addDetails">
+            <h1>Please add your details</h1>
+            <form id="details id">
+                Type: <input type="text" id="typeAdd" name="typeAdd" placeholder="Enter Type"/><br/>
+                Style: <input type="text" id="styleAdd" name="styleAdd" placeholder="Enter Style"/><br/>
+                Color: <input type="text" id="colorAdd" name="colorAdd" placeholder="Enter Color"/><br/>
+                Cost: $<input type="number" id="currency" name="currency" min="0" max="9999" step="0.01" size="4" placeholder="100.00"/><br/>
+                <!--Image: <input type="file" id="image" name="image"/><br/>-->
+                Other Details: <textarea id="detailsAdd" name="detailsAdd" placeholder="Enter Additional Details here" rows="10" cols="60"></textarea><br/>
+                <button id="submit" class="btn btn-info">Submit</button>
+            </form>
+        </div>
+        <div id="addProducts">
+            <h1>Previous Product Details:</h1>
+            <!--<input type="search" id="productSearch" name="productSearch" placeholder="Search Previous Products">-->
+            <div id="products"></div>
         </div>
     </body>
 </html>
