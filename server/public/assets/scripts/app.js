@@ -12,7 +12,7 @@ function getData(){
         url: "/data",
         success: function(data){
             updateDOM(data);
-            //console.log(data);
+            console.log(data);
         }
     });
 }
@@ -26,14 +26,19 @@ function addProduct(data){
     });
 
     console.log(values);
+
     $.ajax({
         type: "POST",
         url: "/data",
         data: values,
         success: function(data){
-            getData();
+            getData(data);
+
         }
     });
+
+    //console.log(data);
+    //console.log(values);
 }
 
 function deleteProduct(){
@@ -55,7 +60,7 @@ function updateDOM(data){
     $("#products").empty();
 
     for(var i = 0; i < data.length; i++){
-        var el = "<div id='" + data[i].id + "' class='well col-md-3'>" +
+        var el = "<div data-id='" + data[i].id + "' class='id well col-md-3' >" +
             "<p>ID #: " + data[i].id + "</p>" +
             "<p>Type: " + data[i].type + "</p>" +
             "<p>Style: " + data[i].style + "</p>" +
@@ -65,8 +70,14 @@ function updateDOM(data){
             "<button class='delete btn btn-danger' data-id='" +
             data[i].id + "'>Delete</button>" +
             "</div>";
-        //console.log(data[i]);
+
+            //$("#products").find('.id').sort(function (a, b) {
+            //    return +a.dataset.id - +b.dataset.id;
+            //})
+            //.appendTo("#products");
 
         $("#products").append(el);
+
+        console.log(data[i]);
     }
 }
