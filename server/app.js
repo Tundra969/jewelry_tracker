@@ -7,6 +7,15 @@ var bodyParser = require('body-parser');
 var pg = require('pg');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/jewelry_tracker';
 
+var cloudinary = require('cloudinary');
+
+cloudinary.config({
+    cloud_name: 'dhro0fkhc',
+    api_key: '348353581476451',
+    api_secret: '5MCQwZGVGX_z2N5Cp74rwE_-oVI'
+});
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({expanded: true}));
 
@@ -38,7 +47,15 @@ app.post('/data', function(req,res){
     });
 });
 
-// Get all the products
+router.post('/url', uploaded.single('file'), function(req,res){
+    console.log(req.file);
+    cloudinary.uploader.upload(req.file.path, function(result){
+        console.log(result);
+        res.send(result)
+    });
+});
+
+// Get all the previous products
 app.get('/data', function(req,res){
     var results = [];
     //console.log(results);
@@ -64,6 +81,7 @@ app.get('/data', function(req,res){
     });
 });
 
+//Delete a previous product
 app.delete('/data', function(req,res){
     console.log(req.body.id);
 
@@ -85,13 +103,17 @@ app.delete('/data', function(req,res){
     });
 });
 
+//General get for all other info
 app.get("/*", function(req,res){
     var file = req.params[0] || "/views/index.html";
     res.sendFile(path.join(__dirname, "./public", file));
 });
 
+
+//Set generic web address
 app.set("port", process.env.PORT || 5000);
 
+//Get port 5000 alternate
 app.listen(app.get("port"), function(){
     console.log("Listening on port: ", app.get("port"));
 });
