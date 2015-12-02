@@ -10,9 +10,9 @@ var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/je
 var cloudinary = require('cloudinary');
 
 cloudinary.config({
-    cloud_name: 'dhro0fkhc',
-    api_key: '348353581476451',
-    api_secret: '5MCQwZGVGX_z2N5Cp74rwE_-oVI'
+    cloud_name: '',
+    api_key: '',
+    api_secret: ''
 });
 
 
@@ -47,7 +47,7 @@ app.post('/data', function(req,res){
     });
 });
 
-router.post('/url', uploaded.single('file'), function(req,res){
+app.post('/url', uploaded.single('file'), function(req,res){
     console.log(req.file);
     cloudinary.uploader.upload(req.file.path, function(result){
         console.log(result);
