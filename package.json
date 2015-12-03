@@ -13,9 +13,12 @@
     "angular": "^1.4.8",
     "body-parser": "^1.14.1",
     "bootstrap": "^3.3.6",
+    "cloudinary": "^1.2.6",
     "express": "^4.13.3",
+    "fs": "0.0.2",
     "jquery": "^2.1.4",
     "jquery-file-upload": "^4.0.5",
+    "multer": "^1.1.0",
     "path": "^0.12.7",
     "pg": "^4.4.3"
   }

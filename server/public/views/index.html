@@ -8,7 +8,11 @@
         <link rel="stylesheet" href="vendors/bootstrap.min.css">
         <link rel="stylesheet" href="assets/styles/style.css">
 
-        <script type="text/javascript" src="vendors/jquery.min.js"></script>
+        <script type='text/javascript' src="vendors/jquery.min.js"></script>
+        <script type='text/javascript' src='vendors/jquery.ui.widget.js'></script>
+        <script type='text/javascript' src='vendors/jquery.iframe-transport.js'></script>
+        <script type='text/javascript' src='vendors/jquery.fileupload.js'></script>
+        <script type='text/javascript' src='vendors/jquery.cloudinary.js'></script>
         <script type="text/javascript" src="assets/scripts/app.js"></script>
     </head>
 
@@ -17,9 +21,12 @@
         <div>
             <h1>Please add your details</h1>
             <form id="addDetails">
+                Name: <input type="text" id="nameAdd" name="nameAdd" placeholder="Enter Item Name"/><br/>
+                <input type="file" name="file url" class="cloudinary-fileupload" data-cloudinary-field="image_id" data-form-data=""/><br/>
                 Type: <input type="text" id="typeAdd" name="typeAdd" placeholder="Enter Type"/><br/>
                 Style: <input type="text" id="styleAdd" name="styleAdd" placeholder="Enter Style"/><br/>
                 Color: <input type="text" id="colorAdd" name="colorAdd" placeholder="Enter Color"/><br/>
+                Stone: <input type="text" id="stoneAdd" name="stoneAdd" placeholder="Enter Stone Type"/><br/>
                 Cost: $<input type="number" id="currency" name="currency" min="0" max="9999" step="0.01" size="4" placeholder="100.00"/><br/>
                 <!--Image: <input type="file" id="image" name="image"/><br/>-->
                 Other Details: <textarea id="detailsAdd" name="detailsAdd" placeholder="Enter Additional Details here" rows="10" cols="60"></textarea><br/>
