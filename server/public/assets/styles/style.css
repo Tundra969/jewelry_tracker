@@ -7,6 +7,11 @@ h1 {
     font-size: x-large;
 }
 
+.bar {
+    height: 18px;
+    background: green;
+}
+
 .well {
     height: 500px;
 }

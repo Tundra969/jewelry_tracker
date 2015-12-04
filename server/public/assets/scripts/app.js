@@ -1,6 +1,38 @@
 $(document).ready(function(){
+
+    $(function () {
+        $('#fileupload').fileupload({
+            dataType: 'json',
+            add: function (e, data) {
+                data.context = $('<button/>').text('Upload')
+                    .appendTo(document.body)
+                    .click(function () {
+                        data.context = $('<p/>').text('Uploading...').replaceAll($(this));
+                        data.submit();
+                    });
+            },
+            done: function (e, data) {
+                $.each(data.result.files, function (index, file) {
+                    $('<p/>').text(file.name).appendTo(document.body);
+                    data.context.text('Upload finished.');
+                });
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .bar').css(
+                    'width',
+                    progress + '%'
+                );
+            }
+
+        });
+    });
+
+
     //Click on submit in form will call addProduct
-    $("#addDetails").submit(addProduct, upload);
+    $("#addDetails").submit(addProduct
+        //, upload
+     );
 
     //Click on delete button on previous item will call deleteProduct
     $("#addProducts").on('click', '.delete', deleteProduct);
@@ -8,6 +40,8 @@ $(document).ready(function(){
     //Calling base site function
     getData();
 });
+
+
 
 //General function to start
 function getData(){
@@ -22,35 +56,12 @@ function getData(){
     });
 }
 
-
-//To upload photo to cloudinary and return the URL for database
-function upload(){
-    $.ajax({
-        type: "POST",
-        url: "/url",
-        data: url,
-        success: function(data){
-            item = {};
-
-            console.log(data, 'uploaded');
-            console.log('item before insertion', item);
-            item.url = data.secure_url;
-            console.log('item after insertion', item);
-
-            getData(data);
-
-
-        }
-    });
-
-}
-
 //To add a new product to the site and database
-function addProduct(data){
+function addProduct(data) {
     event.preventDefault();
     var values = {};
 
-    $.each($(this).serializeArray(), function(i, field){
+    $.each($(this).serializeArray(), function (i, field) {
         values[field.name] = field.value;
     });
 
@@ -60,7 +71,7 @@ function addProduct(data){
         type: "POST",
         url: "/data",
         data: values,
-        success: function(data){
+        success: function (data) {
             getData(data);
         }
     });
@@ -68,6 +79,7 @@ function addProduct(data){
     //console.log(data);
     //console.log(values);
 }
+
 //Delete a previous product from the page as well as the database
 function deleteProduct(){
     var deletedId = {"id" : $(this).data("id")};
@@ -92,7 +104,7 @@ function updateDOM(data){
         var el = "<div data-id='" + data[i].id + "' class='id well col-md-3' >" +
             "<p>Name: " + data[i].name + "</p>" +
             "<p>ID #: " + data[i].id + "</p>" +
-            "<img src='http://res.cloudinary.com/lulvhzmas/image/upload/v1449075535/sample.jpg' alt='" + data[i].name + "' title='" + data[i].name + "' height='150' width='150' />" +
+            "<img src='" + data[i].file + "' alt='" + data[i].file + "' title='" + data[i].file + "' height='150' width='250' />" +
             "<p>Type: " + data[i].type + "</p>" +
             "<p>Style: " + data[i].style + "</p>" +
             "<p>Color: " + data[i].color + "</p>" +
