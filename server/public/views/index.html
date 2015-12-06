@@ -9,10 +9,11 @@
         <link rel="stylesheet" href="assets/styles/style.css">
 
         <script type='text/javascript' src="vendors/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
         <script type='text/javascript' src='vendors/jquery.ui.widget.js'></script>
         <script type='text/javascript' src='vendors/jquery.iframe-transport.js'></script>
         <script type='text/javascript' src='vendors/jquery.fileupload.js'></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script type='text/javascript' src="vendors/bootstrap.min.js"></script>
         <script type="text/javascript" src="assets/scripts/app.js"></script>
 
 
@@ -23,30 +24,41 @@
         <div>
             <h1>Please add your details</h1>
 
-            <!--<i class="glyphicon glyphicon-plus"></i>-->
-            <span>Select files...</span>
-            <!-- The file input field used as target for the file upload widget -->
-            <input id="fileupload" type="file" name="file" data-url="server/php/" multiple>
-            <br>
-            <br>
-            <!-- The global progress bar -->
-            <div id="progress">
-                <div class="bar" style="width: 0%;"></div>
-            </div>
-            <!-- The container for the uploaded files -->
-            <div id="files" class="files"></div>
-            <br>
+            <!--&lt;!&ndash;<i class="glyphicon glyphicon-plus"></i>&ndash;&gt;-->
+            <!--<span>Select files...</span>-->
+            <!--&lt;!&ndash; The file input field used as target for the file upload widget &ndash;&gt;-->
+            <!--<input id="fileUpload" type="file" name="file" data-url="server/images/" multiple>-->
+            <!--<br>-->
+            <!--<br>-->
+            <!--&lt;!&ndash; The global progress bar &ndash;&gt;-->
+            <!--<span id = "status">-->
+                <!--<div id="progress">-->
+                    <!--<div class="bar" style="width: 0%;"></div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; The container for the uploaded files &ndash;&gt;-->
+                <!--<div id="files" class="files"></div>-->
+                <!--</span>-->
+            <!--<br>-->
+
+
+            <!--<form id="uploadForm" enctype="multipart/form-data" method="post">-->
+                <!--<input type="file" name="userPhoto" />-->
+                <!--<input type="submit" value="Upload Image" name="submit">-->
+                <!--<span id = "status"></span>-->
+            <!--</form>-->
+
+
+
 
             <form id="addDetails">
                 Name: <input type="text" id="nameAdd" name="nameAdd" placeholder="Enter Item Name"/><br/>
-                <!--URL: <input type="text" id="url" name="url" placeholder="Enter the URL for the photo"/><br/>-->
-
+                URL:  <input type="text" id="url" name="url" placeholder="Enter the location URL"/><br/>
                 Type: <input type="text" id="typeAdd" name="typeAdd" placeholder="Enter Type"/><br/>
                 Style: <input type="text" id="styleAdd" name="styleAdd" placeholder="Enter Style"/><br/>
                 Color: <input type="text" id="colorAdd" name="colorAdd" placeholder="Enter Color"/><br/>
                 Stone: <input type="text" id="stoneAdd" name="stoneAdd" placeholder="Enter Stone Type"/><br/>
                 Cost: $<input type="number" id="currency" name="currency" min="0" max="9999" step="0.01" size="4" placeholder="100.00"/><br/>
-                Other Details: <textarea id="detailsAdd" name="detailsAdd" placeholder="Enter Additional Details here" rows="10" cols="60"></textarea><br/>
+                Other Details: <textarea id="detailsAdd" name="detailsAdd" placeholder="Enter Additional Details here" rows="5" cols="50"></textarea><br/><br/>
                 <button id="submitDetails" class="submit btn btn-info">Submit</button>
             </form>
         </div>

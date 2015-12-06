@@ -1,38 +1,11 @@
 $(document).ready(function(){
 
-    $(function () {
-        $('#fileupload').fileupload({
-            dataType: 'json',
-            add: function (e, data) {
-                data.context = $('<button/>').text('Upload')
-                    .appendTo(document.body)
-                    .click(function () {
-                        data.context = $('<p/>').text('Uploading...').replaceAll($(this));
-                        data.submit();
-                    });
-            },
-            done: function (e, data) {
-                $.each(data.result.files, function (index, file) {
-                    $('<p/>').text(file.name).appendTo(document.body);
-                    data.context.text('Upload finished.');
-                });
-            },
-            progressall: function (e, data) {
-                var progress = parseInt(data.loaded / data.total * 100, 10);
-                $('#progress .bar').css(
-                    'width',
-                    progress + '%'
-                );
-            }
-
-        });
-    });
+    //Click on submit will upload photo to uploads folder in project
+    //$('#fileUpload').submit(addPhoto);
 
 
     //Click on submit in form will call addProduct
-    $("#addDetails").submit(addProduct
-        //, upload
-     );
+    $("#addDetails").submit(addProduct);
 
     //Click on delete button on previous item will call deleteProduct
     $("#addProducts").on('click', '.delete', deleteProduct);
@@ -55,6 +28,26 @@ function getData(){
         }
     });
 }
+
+//To add a photo to the local folder
+//function addPhoto() {
+//    $("#status").empty().text("File is uploading...");
+//
+//    $(this).ajaxSubmit({
+//
+//        error: function(err) {
+//            Console.log('Error: ' + err);
+//        },
+//
+//        success: function(response) {
+//            console.log(response);
+//            $("#status").empty().text(response);
+//        }
+//    });
+//
+//    return false;
+//}
+
 
 //To add a new product to the site and database
 function addProduct(data) {
@@ -101,10 +94,10 @@ function updateDOM(data){
     $("#products").empty();
 
     for(var i = 0; i < data.length; i++){
-        var el = "<div data-id='" + data[i].id + "' class='id well col-md-3' >" +
-            "<p>Name: " + data[i].name + "</p>" +
+        var el = "<div data-id='" + data[i].id + "' class='id well col-md-2' >" +
+            "<p><strong>Name: " + data[i].name + "</strong></p>" +
             "<p>ID #: " + data[i].id + "</p>" +
-            "<img src='" + data[i].file + "' alt='" + data[i].file + "' title='" + data[i].file + "' height='150' width='250' />" +
+            "<img src='" + data[i].url + "' title='" + data[i].url + "' height='auto' width='275px' />" +
             "<p>Type: " + data[i].type + "</p>" +
             "<p>Style: " + data[i].style + "</p>" +
             "<p>Color: " + data[i].color + "</p>" +

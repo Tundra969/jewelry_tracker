@@ -29,10 +29,10 @@ app.use(bodyParser.urlencoded({expanded: true}));
 app.post('/data',
     //upload.single('file'),
     function(req,res){
-    // pull the data off of the request
+     //pull the data off of the request
     var newProduct = {
         "name": req.body.nameAdd,
-        //"url": req.body.url,
+        "url": req.body.url,
         "type": req.body.typeAdd,
         "style": req.body.styleAdd,
         "color": req.body.colorAdd,
@@ -46,8 +46,8 @@ app.post('/data',
     pg.connect(connectionString, function (err, client) {
         //SQL Query > Insert Data
         //Uses prepared statements, the $1 and $2 are placeholder variables. PSQL then makes sure they are relatively safe values and then uses them when it executes the query.
-        client.query("INSERT INTO products (name, type, style, color, stone, cost, details) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id",  //this statement works in postgresql
-            [newProduct.name, newProduct.type, newProduct.style, newProduct.color, newProduct.stone, newProduct.cost, newProduct.details],
+        client.query("INSERT INTO products (name, url, type, style, color, stone, cost, details) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id",  //this statement works in postgresql
+            [newProduct.name, newProduct.url, newProduct.type, newProduct.style, newProduct.color, newProduct.stone, newProduct.cost, newProduct.details],
             function(err, result) {
                 if(err) {
                     console.log("Error inserting data: ", err);
