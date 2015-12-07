@@ -85,6 +85,55 @@ app.get('/data', function(req,res){
     });
 });
 
+//app.get('/find', function(req,res) {
+//    var results = req.query.searchProducts;
+//    var query = client.query("SELECT * FROM products WHERE COLUMN details CONTAINS" + results + "ORDER BY id ASC");
+//        console.log(req.query);
+//
+//        if(query){
+//            Products.find({"details": query}, function(err, data) {
+//                if (err) {
+//                    console.log("Error! : ", err);
+//                }
+//                //console.log(data);
+//                res.send(data);
+//            })
+//        } else {
+//            Products.find({}, function (err, data) {
+//                if (err) {
+//                    console.log("Error! : ", err);
+//                }
+//                //console.log(data);
+//                res.send(data);
+//            })
+//        }
+//});
+
+
+//    var results = [];
+//    //console.log(results);
+//    //SQL Query > SELECT data from table
+//    pg.connect(connectionString, function (err, client, done) {
+//        var query = client.query("SELECT * FROM products WHERE column_details CONTAINS" + results + "ORDER BY id ASC");
+//
+//        // Stream results back one row at a time, push into results array
+//        query.on('row', function (row) {
+//            results.push(row);
+//        });
+//        //console.log(results);
+//        // After all data is returned, close connection and return results
+//        query.on('end', function () {
+//            client.end();
+//            return res.json(results);
+//        });
+//
+//        // Handle Errors
+//        if (err) {
+//            console.log(err);
+//        }
+//    })
+//};
+
 //app.post('/api/photo',function(req,res){
 //    upload(req,res,function(err) {
 //        if(err) {

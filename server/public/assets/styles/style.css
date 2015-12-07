@@ -1,9 +1,10 @@
 body {
+    background-color: #7ba2c6;
     margin: 20px;
     padding-left: 20px;
 }
 div {
-    margin: 10px;
+    margin: 15px;
     padding-left: 20px;
 }
 
@@ -13,8 +14,13 @@ input {
 }
 
 img {
-    width: 250px;
-    height: 350px;
+    height: 45%;
+    margin: 2.5%;
+    background-color: #f5f5f5;
+    color: #bdc3c7;
+
+    /*width: 315px;*/
+    /*height: auto;*/
 }
 
 h1 {
@@ -27,6 +33,6 @@ h1 {
 }
 
 .well {
-    width: 350px;
-    height: 700px;
+    width: 455px;
+    height: 580px;
 }

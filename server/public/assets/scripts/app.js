@@ -7,6 +7,8 @@ $(document).ready(function(){
     //Click on submit in form will call addProduct
     $("#addDetails").submit(addProduct);
 
+    //$("#productSearch").submit(searchProducts);
+
     //Click on delete button on previous item will call deleteProduct
     $("#addProducts").on('click', '.delete', deleteProduct);
 
@@ -73,6 +75,28 @@ function addProduct(data) {
     //console.log(values);
 }
 
+
+//function searchProducts (data) {
+//    event.preventDefault();
+//    var values = {};
+//
+//    $.each($(this).serializeArray(), function (i, field) {
+//        values[field.name] = field.value;
+//    });
+//    console.log($(this).serializeArray());
+//    console.log(data);
+//
+//    $.ajax({
+//        type: "GET",
+//        url: '/find',
+//        data: values,
+//        success: function (data) {
+//            updateDom(data);
+//            console.log(data);
+//        }
+//    });
+//}
+
 //Delete a previous product from the page as well as the database
 function deleteProduct(){
     var deletedId = {"id" : $(this).data("id")};
@@ -96,8 +120,7 @@ function updateDOM(data){
     for(var i = 0; i < data.length; i++){
         var el = "<div data-id='" + data[i].id + "' class='id well col-md-2' >" +
             "<p><strong>Name: " + data[i].name + "</strong></p>" +
-            "<p>ID #: " + data[i].id + "</p>" +
-            "<img src='" + data[i].url + "' title='" + data[i].url + "' height='auto' width='275px' />" +
+            "<img src='" + data[i].url + "' title='" + data[i].url + "' height='auto' width='auto' />" +
             "<p>Type: " + data[i].type + "</p>" +
             "<p>Style: " + data[i].style + "</p>" +
             "<p>Color: " + data[i].color + "</p>" +
